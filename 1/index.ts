@@ -2,13 +2,13 @@
 
 const data = await Deno.readTextFile("./1/data.txt");
 
-const lines = data.split("\n");
+const lines = data.split("\r\n");
 
 let max = -Infinity, current = 0;
 let cells = 0;
 
 for (const line of lines) {
-  if (line.trim() === "") {
+  if (line === "") {
     current = 0;
     cells++;
   } else {
