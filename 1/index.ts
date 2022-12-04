@@ -19,3 +19,22 @@ for (const line of lines) {
 
 console.log("cells:", cells, "max:", max);
 // 247 66719
+
+current = 0;
+const maxes = new Array(3).fill(-Infinity);
+
+for (const line of lines) {
+  if (line === "") {
+    current = 0;
+  } else {
+    current += parseInt(line);
+    const isGreater = maxes.findIndex((m) => current >= m);
+    if (isGreater !== -1) {
+      maxes.splice(isGreater, 0, current);
+      maxes.splice(3);
+    }
+  }
+}
+
+console.log("maxes:", maxes, "total:", maxes.reduce((a, b) => a + b));
+// [ 66719, 66339, 65493 ] 198551
