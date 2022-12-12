@@ -12,3 +12,6 @@ day4:
 
 day5:
 	deno run --allow-read ./5/index.ts
+
+day6:
+	deno run --allow-read ./6/index.ts
