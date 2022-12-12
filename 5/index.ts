@@ -46,3 +46,6 @@ const topBoxes = (boxes: string[][]) => boxes.map((b) => b[0]).join("");
 
 console.log("boxes1", topBoxes(boxes1));
 console.log("boxes2", topBoxes(boxes2));
+
+// boxes1 LBLVVTVLP
+// boxes2 TPFFBDRJD
