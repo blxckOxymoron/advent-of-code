@@ -121,7 +121,7 @@ function showPart2() {
   Deno.writeTextFileSync("./9/show2.txt", "====================\r\n", {
     append: true,
   });
-  let positions = rope.map((loc) => loc.join(","));
+  const positions = rope.map((loc) => loc.join(","));
   for (let y = minLocation[1] - 1; y <= maxLocation[1] + 1; y++) {
     let line = "";
     for (let x = minLocation[0] - 1; x <= maxLocation[0] + 1; x++) {
