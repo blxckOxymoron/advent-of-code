@@ -61,3 +61,60 @@ function showVisibilityGrid() {
 console.log("visible:", visibilityGrid.flat().filter((m) => m).length);
 // visible: 1845
 
+let max = 0;
+
+for (let i = 0; i < size; i++) {
+  for (let j = 0; j < size; j++) {
+    const score = getScenicScore(i, j);
+    if (score > max) {
+      max = score;
+    }
+  }
+}
+
+function getScenicScore(x: number, y: number): number {
+  let leftView: number | undefined;
+  let rightView: number | undefined;
+  let topView: number | undefined;
+  let bottomView: number | undefined;
+
+  for (let d = 1; d <= size; d++) {
+    if (leftView === undefined) {
+      if (grid[x][y - d] === undefined) {
+        leftView = d - 1;
+      } else if (grid[x][y - d] >= grid[x][y]) {
+        leftView = d;
+      }
+    }
+
+    if (rightView === undefined) {
+      if (grid[x][y + d] === undefined) {
+        rightView = d - 1;
+      } else if (grid[x][y + d] >= grid[x][y]) {
+        rightView = d;
+      }
+    }
+
+    if (topView === undefined) {
+      if (grid[x - d] === undefined) {
+        topView = d - 1;
+      } else if (grid[x - d][y] >= grid[x][y]) {
+        topView = d;
+      }
+    }
+
+    if (bottomView === undefined) {
+      if (grid[x + d] === undefined) {
+        bottomView = d - 1;
+      } else if (grid[x + d][y] >= grid[x][y]) {
+        bottomView = d;
+      }
+    }
+  }
+
+  return (leftView ?? 0) * (rightView ?? 0) * (topView ?? 0) *
+    (bottomView ?? 0);
+}
+
+console.log("max:", max);
+// max: 230112
