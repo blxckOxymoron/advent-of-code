@@ -13,7 +13,11 @@ class Cell {
   goalPathDir?: [number, number];
 
   get beeline() {
-    return Math.hypot(this.x - Cell.end.x, this.y - Cell.end.y);
+    return Math.hypot(
+      this.x - Cell.end.x,
+      this.y - Cell.end.y,
+      this.height - Cell.end.height,
+    );
   }
 
   get factor() {
