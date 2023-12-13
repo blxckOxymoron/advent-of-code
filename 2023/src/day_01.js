@@ -44,18 +44,15 @@ export const levelTwo = ({ input, lines }) => {
   };
 
   const codes = lines.map(line => {
-    const lineWithNumbers = line.replace(
-      /(one|two|three|four|five|six|seven|eight|nine)/g,
-      (match) => numbersAsStrings[match]
-    );
 
+    // https://stackoverflow.com/questions/11430863/how-to-find-overlapping-matches-with-a-regexp
     const numbers = Array.from(
-      lineWithNumbers.matchAll(/\d/g),
-      match => parseInt(match[0]) || numbersAsStrings[match[0]]
+      line.matchAll(/(?=(one|two|three|four|five|six|seven|eight|nine|\d))/g),
+      match => parseInt(match[1]) || numbersAsStrings[match[1]]
     );
 
-    const firstNum = numbers.at(0);
-    const secondNum = numbers.at(-1);
+    const firstNum = numbers.at(0) || 0;
+    const secondNum = numbers.at(-1) || 0;
 
     return firstNum * 10 + secondNum;
   });
